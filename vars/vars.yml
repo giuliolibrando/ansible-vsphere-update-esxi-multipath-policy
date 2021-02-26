@@ -1,0 +1,7 @@
+
+vcenter_username: "{{ vsphere_username }}"
+vcenter_hostname: 
+vcenter_password: "{{ vsphere_password }}"
+remote_user: "{{ esxi_username }}"
+ansible_password: "{{ esxi_password }}"
+ansible_become_pass: "{{ esxi_password }}"
