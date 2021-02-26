@@ -1,0 +1,16 @@
+---
+- hosts: all 
+  serial: 1
+  gather_facts: false
+  
+  vars_files:
+    - vars/vars.yml
+  
+  tasks:
+
+  - name: Modify Path
+    shell: esxcli storage nmp satp set -s VMW_SATP_ALUA -P VMW_PSP_RR
+    
+  - name: Modify LUN Path based on storage type (ALUA)
+    shell: for i in `esxcli storage nmp device list | grep -o "naa.*"` ; do esxcli storage nmp device set --device $i --psp VMW_PSP_RR ; done
+    ignore_errors: yes
